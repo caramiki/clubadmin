@@ -1,24 +1,5 @@
-# README
+# Club Admin
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Club Admin (working title) is an app that helps people who run clubs/meetups take attendance and keep notes on members for better engagement.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I'm making this because a) I'm tired of keeping attendance in a Google spreadsheet and b) my memory is terrible and I forget members' faces and names even if they attend almost every meetup.
