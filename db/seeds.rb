@@ -6,6 +6,76 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-unless User.find_by_email("admin@example.com")
-  User.create!(first_name: "Admin", last_name: "Admin", email: "admin@example.com", password: "password", password_confirmation: "password")
+# Create club
+club = Club.where(name: "Cat Club").first_or_create do |c|
+  c.description = "A club for fans of cats"
+end
+
+# Create users
+admin =  User.where(email: "admin@example.com").first_or_create do |u|
+  u.assign_attributes(
+    first_name: "Admin",
+    last_name: "Catclub",
+    email: "admin@example.com",
+    password: "password",
+    password_confirmation: "password"
+  )
+end
+
+organizer = User.where(email: "organizer@example.com").first_or_create do |u|
+  u.assign_attributes(
+    first_name: "Organizer",
+    last_name: "Catclub",
+    email: "organizer@example.com",
+    password: "password",
+    password_confirmation: "password"
+  )
+end
+
+# Create roles
+Role.create!(club: club, user: admin, level: :admin) unless admin.clubs.include?(club)
+Role.create!(club: club, user: organizer, level: :organizer) unless organizer.clubs.include?(club)
+
+# Create members
+[
+  ["Amy", "Anderson"],
+  ["Bailey", "Wilson"],
+  ["Cortney", "Baker"],
+  ["Devin", "Powers"],
+  ["Evelyn", "Fox"],
+  ["Frank", "Limyder"],
+  ["George", "Harold"],
+  ["Harriet", "Jones"],
+  ["Irma", "Washington"],
+  ["Joey", "Michaels"]
+].each do |f, l|
+  Member.where(first_name: f, last_name: l).first_or_create do |m|
+    m.club = club
+  end
+end
+
+# Create meetings and attendances
+unless club.meetings.any?
+  first_meeting = Date.parse("Monday") - 10.weeks
+  meeting_names = ["Show & Tell", "Presentation Night", "Workshop", "Social Night"]
+
+  20.times do |i|
+    start_time = (first_meeting + i.weeks).to_datetime + 18.hours
+
+    club.meetings.create!(
+      title: meeting_names[i % 4],
+      start_time: start_time,
+      end_time: start_time + 2.hours
+    )
+  end
+
+  club.meetings.past.each do |m|
+    attendees = club.members.order("RANDOM()").limit(rand(4..10)).to_a
+    attendees << admin.membership(club) unless attendees.include?(admin.membership(club))
+    attendees << organizer.membership(club) unless attendees.include?(organizer.membership(club))
+
+    attendees.each do |a|
+      a.attendances.create!(meeting: m)
+    end
+  end
 end

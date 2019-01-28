@@ -10,10 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_211848) do
+ActiveRecord::Schema.define(version: 2019_01_26_213202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendances", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.bigint "meeting_id", null: false
+    t.datetime "arrival_time"
+    t.datetime "departure_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meeting_id"], name: "index_attendances_on_meeting_id"
+    t.index ["member_id"], name: "index_attendances_on_member_id"
+  end
+
+  create_table "clubs", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.bigint "club_id", null: false
+    t.string "title"
+    t.datetime "start_time", null: false
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_meetings_on_club_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.bigint "club_id", null: false
+    t.bigint "user_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_members_on_club_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.bigint "club_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "level", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_roles_on_club_id"
+    t.index ["user_id"], name: "index_roles_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", default: "", null: false
@@ -29,4 +79,11 @@ ActiveRecord::Schema.define(version: 2018_10_11_211848) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attendances", "meetings"
+  add_foreign_key "attendances", "members"
+  add_foreign_key "meetings", "clubs"
+  add_foreign_key "members", "clubs"
+  add_foreign_key "members", "users"
+  add_foreign_key "roles", "clubs"
+  add_foreign_key "roles", "users"
 end
