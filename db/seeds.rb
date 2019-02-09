@@ -6,13 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Create club
-club = Club.where(name: "Cat Club").first_or_create do |c|
-  c.description = "A club for fans of cats"
+# Create users
+super_admin = User.where(email: "superadmin@example.com").first_or_create do |u|
+  u.assign_attributes(
+    first_name: "Super",
+    last_name: "Admin",
+    email: "superadmin@example.com",
+    password: "password",
+    password_confirmation: "password",
+    super_admin: true
+  )
 end
 
-# Create users
-admin =  User.where(email: "admin@example.com").first_or_create do |u|
+admin = User.where(email: "admin@example.com").first_or_create do |u|
   u.assign_attributes(
     first_name: "Admin",
     last_name: "Catclub",
@@ -32,8 +38,14 @@ organizer = User.where(email: "organizer@example.com").first_or_create do |u|
   )
 end
 
+# Create club
+club = Club.where(name: "Cat Club").first_or_create do |c|
+  c.description = "A club for fans of cats"
+  c.creator = admin
+end
+
 # Create roles
-Role.create!(club: club, user: admin, level: :admin) unless admin.clubs.include?(club)
+# admin was automatically made the admin by being the creator of Cat Club
 Role.create!(club: club, user: organizer, level: :organizer) unless organizer.clubs.include?(club)
 
 # Create members

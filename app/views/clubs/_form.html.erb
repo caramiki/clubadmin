@@ -1,0 +1,27 @@
+<%= form_with(model: club, local: true) do |f| %>
+  <% if club.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(club.errors.count, "error") %> prohibited this club from being saved:</h2>
+
+      <ul>
+      <% club.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if f.object.new_record? %>
+    <%= f.hidden_field :creator_id, value: current_user.id %>
+  <% end %>
+
+  <label>Name</label><br>
+  <%= f.text_field :name %><br>
+
+  <label>Description</label><br>
+  <%= f.text_area :description %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

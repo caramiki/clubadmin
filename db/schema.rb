@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_26_213202) do
+ActiveRecord::Schema.define(version: 2019_02_05_040427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,12 @@ ActiveRecord::Schema.define(version: 2019_01_26_213202) do
   end
 
   create_table "clubs", force: :cascade do |t|
+    t.bigint "creator_id"
     t.string "name", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_clubs_on_creator_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -75,12 +77,14 @@ ActiveRecord::Schema.define(version: 2019_01_26_213202) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "super_admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "attendances", "meetings"
   add_foreign_key "attendances", "members"
+  add_foreign_key "clubs", "users", column: "creator_id"
   add_foreign_key "meetings", "clubs"
   add_foreign_key "members", "clubs"
   add_foreign_key "members", "users"

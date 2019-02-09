@@ -23,15 +23,15 @@
 #
 
 class Member < ApplicationRecord
-  belongs_to :club
-  belongs_to :user, required: false
-  has_many :attendances, dependent: :destroy
+  belongs_to :club, inverse_of: :members
+  belongs_to :user, inverse_of: :memberships, required: false
+  has_many :attendances, inverse_of: :member, dependent: :destroy
 
   # We need at least a first name or a last name
   validates :first_name, presence: { if: -> { last_name.blank? } }
   validates :last_name, presence: { if: -> { first_name.blank? } }
 
-  validates_presence_of :club
+  validates :club, presence: true
 
   def attendance(meeting)
     attendances.where(meeting: meeting).first

@@ -1,0 +1,12 @@
+en:
+  pundit:
+    club_policy:
+      index?: "You must be signed in to view clubs."
+    default:
+      create?: "You are not permitted to create %{items}."
+      destroy?: "You are not permitted to destroy this %{item}."
+      edit: "You are not permitted to edit this %{item}."
+      index?: "You are not permitted to view %{items}."
+      new?: "You are not permitted to create %{items}."
+      show?: "You are not permitted to view this %{item}."
+      update?: "You are not permitted to edit this %{item}."

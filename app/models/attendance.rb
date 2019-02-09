@@ -22,10 +22,10 @@
 #
 
 class Attendance < ApplicationRecord
-  belongs_to :meeting
-  belongs_to :member
+  belongs_to :meeting, inverse_of: :attendances
+  belongs_to :member, inverse_of: :attendances
 
-  validates_presence_of :meeting
-  validates_presence_of :member
+  validates :meeting, presence: true
+  validates :member, presence: true
   validates :meeting, uniqueness: { scope: :member }
 end

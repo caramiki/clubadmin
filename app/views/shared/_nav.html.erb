@@ -7,6 +7,9 @@
 
       <% if current_user %>
         <li class="nav__item">
+          <%= link_to t(".clubs"), clubs_path, class: "nav__link" %>
+        </li>
+        <li class="nav__item">
           <%= link_to t(".edit_profile"), edit_user_registration_path, class: "nav__link" %>
         </li>
         <li class="nav__item">

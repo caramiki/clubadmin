@@ -20,11 +20,11 @@
 #
 
 class Meeting < ApplicationRecord
-  belongs_to :club
-  has_many :attendances, dependent: :destroy
+  belongs_to :club, inverse_of: :meetings
+  has_many :attendances, inverse_of: :meeting, dependent: :destroy
 
   validates :start_time, presence: true
-  validates_presence_of :club
+  validates :club, presence: true
 
   scope :future,  -> { where("start_time > ?", Date.current) }
   scope :past, -> { where("start_time <= ?", Date.current) }

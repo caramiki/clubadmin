@@ -21,8 +21,8 @@
 #
 
 class Role < ApplicationRecord
-  belongs_to :club
-  belongs_to :user
+  belongs_to :club, inverse_of: :roles
+  belongs_to :user, inverse_of: :roles
 
   validates_presence_of :club
   validates_presence_of :user

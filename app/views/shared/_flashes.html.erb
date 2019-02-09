@@ -1,15 +1,5 @@
-<% if flash[:alert] %>
-  <div class="flash-messages">
-    <div class="flash flash--warn">
-      <%= flash[:alert] %>
-    </div>
-  </div>
-<% end %>
-
-<% if flash[:notice] %>
-  <div class="flash-messages">
-    <div class="flash">
-      <%= flash[:notice] %>
-    </div>
+<% flash.each do |type, message| %>
+  <div class="flash flash--<%= type %>">
+    <%= message %>
   </div>
 <% end %>
