@@ -10,15 +10,15 @@ class ClubPolicy < ApplicationPolicy
   end
 
   def index?
-    user
+    signed_in_user?
   end
 
   def show?
-    user&.associated_with? record
+    user.associated_with? record
   end
 
   def create?
-    user
+    signed_in_user?
   end
 
   def update?

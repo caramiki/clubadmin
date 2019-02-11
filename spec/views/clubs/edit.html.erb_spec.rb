@@ -1,14 +1,14 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "clubs/edit", type: :view do
-  before(:each) do
-    @club = assign(:club, Club.create!())
-  end
+  let(:club) { create(:club) }
+  let(:user) { create(:user, :super_admin) }
+  before(:each) { sign_in user }
 
   it "renders the edit club form" do
-    render
+    render template: "clubs/edit.html.erb", locals: { club: club }
 
-    assert_select "form[action=?][method=?]", club_path(@club), "post" do
+    assert_select "form[action=?][method=?]", club_path(club), "post" do
     end
   end
 end

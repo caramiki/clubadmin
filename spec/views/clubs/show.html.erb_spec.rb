@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "clubs/show", type: :view do
-  before(:each) do
-    @club = assign(:club, Club.create!())
-  end
+  let(:club) { create(:club) }
+  let(:user) { create(:user, :super_admin) }
+  before(:each) { sign_in user }
 
-  it "renders attributes in <p>" do
-    render
+  it "renders the club view" do
+    render template: "clubs/show.html.erb", locals: { club: club }
   end
 end

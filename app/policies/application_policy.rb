@@ -42,12 +42,18 @@ class ApplicationPolicy
     attr_reader :user, :scope
 
     def initialize(user, scope)
-      @user = user
+      @user = user || User.new
       @scope = scope
     end
 
     def resolve
       scope.all
     end
+  end
+
+  private
+
+  def signed_in_user?
+    user.id?
   end
 end

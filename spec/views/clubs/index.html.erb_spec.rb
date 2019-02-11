@@ -1,14 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "clubs/index", type: :view do
-  before(:each) do
-    assign(:clubs, [
-      Club.create!(),
-      Club.create!()
-    ])
-  end
+  let(:clubs) { create_list(:club, 3) }
+  let(:user) { create(:user, :super_admin) }
+  before(:each) { sign_in user }
 
   it "renders a list of clubs" do
-    render
+    render template: "clubs/index.html.erb", locals: { clubs: clubs }
   end
 end

@@ -35,6 +35,10 @@ group :development, :test do
   # Use dotenv for environment variables
   gem "dotenv-rails"
 
+  # Creates dummy objects for tests
+  gem "factory_bot_rails"
+  # Creates dummy data
+  gem "ffaker"
   # RSpec for Testing
   gem "rspec-rails", "~> 3.8"
 end

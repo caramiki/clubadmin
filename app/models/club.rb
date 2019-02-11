@@ -19,7 +19,7 @@
 #
 
 class Club < ApplicationRecord
-  has_many :members, inverse_of: :club
+  has_many :members, inverse_of: :club, dependent: :destroy
   has_many :meetings, inverse_of: :club, dependent: :destroy
   has_many :roles, inverse_of: :club, dependent: :destroy
   has_many :users, through: :roles
@@ -28,7 +28,7 @@ class Club < ApplicationRecord
 
   validates :name, presence: true
 
-  after_create :create_admin
+  after_create :create_admin_role_for_creator
 
   def associated_with?(user)
     users.include? user
@@ -36,7 +36,7 @@ class Club < ApplicationRecord
 
   private
 
-  def create_admin
+  def create_admin_role_for_creator
     roles.create(user: creator, level: :admin) unless creator.super_admin?
   end
 end
