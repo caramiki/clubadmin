@@ -29,19 +29,19 @@ RSpec.describe Club, type: :model do
       organizer = create(:role, :organizer, club: club).user
       creator = club.creator
 
-      assert club.associated_with? admin
-      assert club.associated_with? organizer
-      assert club.associated_with? creator
+      expect(club.associated_with?(admin)).to be true
+      expect(club.associated_with?(organizer)).to be true
+      expect(club.associated_with?(creator)).to be true
     end
 
     it "returns false for a user that is not associated with the club" do
       some_user = create(:user)
 
-      refute club.associated_with? some_user
+      expect(club.associated_with?(some_user)).to be false
     end
   end
 
   it "makes the creator an admin of the club" do
-    assert club.creator.admin_of? club
+    expect(club.creator.admin_of?(club)).to be true
   end
 end

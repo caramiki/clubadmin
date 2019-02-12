@@ -33,7 +33,7 @@ class User < ApplicationRecord
   after_update :update_memberships
 
   def admin_of?(club)
-    super_admin? || role_in(club).admin?
+    super_admin? || role_in(club)&.admin?
   end
 
   def associated_with?(obj)
