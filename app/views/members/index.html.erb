@@ -1,0 +1,30 @@
+<h1>Members of <%= club.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% members.each do |member| %>
+      <tr>
+        <td><%= member.first_name %></td>
+        <td><%= member.last_name %></td>
+        <td><%= member.notes %></td>
+        <td><%= link_to "Show", club_member_path(club, member) %></td>
+        <td><%= link_to "Edit", edit_club_member_path(club, member) %></td>
+        <td><%= link_to "Destroy", club_member_path(club, member), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Member", new_club_member_path(club) %> |
+<%= link_to "Back", club %>

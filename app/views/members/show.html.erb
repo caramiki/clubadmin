@@ -1,0 +1,8 @@
+<p>
+  First Name: <%= member.first_name %><br>
+  Last Name: <%= member.last_name %><br>
+  Notes: <%= member.notes %>
+</p>
+
+<%= link_to "Edit", edit_club_member_path(club, member) %> |
+<%= link_to "Back", club_members_path(club) %>

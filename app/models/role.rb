@@ -24,8 +24,8 @@ class Role < ApplicationRecord
   belongs_to :club, inverse_of: :roles
   belongs_to :user, inverse_of: :roles
 
-  validates_presence_of :club
-  validates_presence_of :user
+  validates :club, presence: true
+  validates :user, presence: true
   validates :club, uniqueness: { scope: :user }
 
   enum level: { organizer: 1, admin: 2 }

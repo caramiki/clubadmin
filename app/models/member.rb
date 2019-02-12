@@ -32,6 +32,11 @@ class Member < ApplicationRecord
   validates :last_name, presence: { if: -> { first_name.blank? } }
 
   validates :club, presence: true
+  validates :club, uniqueness: { scope: :user }
+
+  def associated_with?(user)
+    club.users.include? user
+  end
 
   def attendance(meeting)
     attendances.where(meeting: meeting).first

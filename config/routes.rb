@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
 
-  resources :clubs
+  resources :clubs do
+    resources :members
+  end
 end
