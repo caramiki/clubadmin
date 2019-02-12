@@ -32,7 +32,7 @@ class Member < ApplicationRecord
   validates :last_name, presence: { if: -> { first_name.blank? } }
 
   validates :club, presence: true
-  validates :club, uniqueness: { scope: :user }
+  validates :club, uniqueness: { scope: :user }, if: :user
 
   def associated_with?(user)
     club.users.include? user
