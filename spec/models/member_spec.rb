@@ -67,4 +67,10 @@ RSpec.describe Member, type: :model do
       expect(member.attended?(meeting)).to be false
     end
   end
+
+  describe "#name" do
+    it "returns the user's full name" do
+      expect(member.name).to eq "#{member.first_name} #{member.last_name}"
+    end
+  end
 end
