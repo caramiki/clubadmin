@@ -1,15 +1,27 @@
 en:
+  clubs:
+    show:
+      new_members: New Members
+      recent_meetings: Recent Meetings
+      regular_members: Regulars
+      upcoming_meetings: Upcoming Meetings
   globals:
     created: "%{item} was successfully created."
     destroyed: "%{item} was successfully deleted."
     updated: "%{item} was successfully updated."
+  meetings:
+    show:
+      attendees: Attendees
+  members:
+    show:
+      attended_meetings: Meetings Attended
   shared:
     form_errors:
       general: "There was a problem saving this %{item}."
     nav:
-      clubs: "Clubs"
-      edit_profile: "Edit Your Profile"
-      home: "Home"
-      sign_in: "Sign In"
-      sign_out: "Sign Out"
-      sign_up: "Sign Up"
+      clubs: Clubs
+      edit_profile: Edit Your Profile
+      home: Home
+      sign_in: Sign In
+      sign_out: Sign Out
+      sign_up: Sign Up

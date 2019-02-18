@@ -11,6 +11,7 @@
 
   <body>
     <%= render "shared/nav" %>
+    <%= render "shared/club_nav", club: @club if club_nav? %>
     <main class="container">
       <%= render "shared/flashes" %>
       <%= yield %>

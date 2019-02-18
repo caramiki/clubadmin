@@ -1,34 +1,7 @@
 <h1><%= club.name %> Meetings</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-      <th>Meeting Notes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% meetings.each do |meeting| %>
-      <tr>
-        <td><%= meeting.title %></td>
-        <td><%= meeting.description %></td>
-        <td><%= meeting.start_time %></td>
-        <td><%= meeting.end_time %></td>
-        <td><%= meeting.notes %></td>
-        <td><%= link_to "Show", club_meeting_path(club, meeting) %></td>
-        <td><%= link_to "Edit", edit_club_meeting_path(club, meeting) %></td>
-        <td><%= link_to "Destroy", club_meeting_path(club, meeting), method: :delete, data: { confirm: "Are you sure?" } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "meetings", club: club, meetings: meetings %>
 
 <br>
 
-<%= link_to "New Meeting", new_club_meeting_path(club) %> |
-<%= link_to "Back", club %>
+<%= link_to "New Meeting", new_club_meeting_path(club) %>

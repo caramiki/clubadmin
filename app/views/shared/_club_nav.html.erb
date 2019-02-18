@@ -1,0 +1,26 @@
+<nav class="nav">
+  <div class="row">
+    <ul class="col col-12 nav__items">
+      <% if policy(club).show? %>
+        <li class="nav__item">
+          <%= link_to club.name, club, class: "nav__link" %>
+        </li>
+      <% end %>
+      <% if policy(club.meetings).index? %>
+        <li class="nav__item">
+          <%= link_to Meeting.model_name.plural.titleize, club_meetings_path(club), class: "nav__link" %>
+        </li>
+      <% end %>
+      <% if policy(club.members).index? %>
+        <li class="nav__item">
+          <%= link_to Member.model_name.plural.titleize, club_members_path(club), class: "nav__link" %>
+        </li>
+      <% end %>
+      <% # if policy(club.users).index? %>
+        <li class="nav__item">
+          <%= link_to User.model_name.plural.titleize, "#", class: "nav__link" %>
+        </li>
+      <% # end %>
+    </ul>
+  </div>
+</nav>

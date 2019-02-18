@@ -6,5 +6,7 @@
   Notes: <%= meeting.notes %>
 </p>
 
+<h2><%= t(".attendees") %></h2>
+
 <%= link_to "Edit", edit_club_meeting_path(club, meeting) %> |
 <%= link_to "Back", club_meetings_path(club) %>

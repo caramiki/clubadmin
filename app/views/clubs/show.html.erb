@@ -1,9 +1,12 @@
+<h1><%= club.name %></h1>
+
 <p>
-  Name: <%= club.name %><br>
   Description: <%= club.description %>
 </p>
 
-<%= link_to "Members", club_members_path(club) %> |
-<%= link_to "Meetings", club_meetings_path(club) %> |
-<%= link_to "Edit", edit_club_path(club) %> |
-<%= link_to "Back", clubs_path %>
+<%= link_to "Edit", edit_club_path(club) %>
+
+<h2><%= t(".upcoming_meetings") %></h2>
+<h2><%= t(".recent_meetings") %></h2>
+<h2><%= t(".new_members") %></h2>
+<h2><%= t(".regular_members") %></h2>
