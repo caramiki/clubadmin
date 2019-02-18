@@ -5,6 +5,8 @@ class CreateMeetings < ActiveRecord::Migration[5.2]
       t.string :title
       t.datetime :start_time, null: false
       t.datetime :end_time
+      t.text :description
+      t.text :notes
 
       t.timestamps
     end

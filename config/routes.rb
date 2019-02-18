@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :clubs do
+    resources :meetings
     resources :members
   end
 end

@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2019_02_05_040427) do
     t.string "title"
     t.datetime "start_time", null: false
     t.datetime "end_time"
+    t.text "description"
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_meetings_on_club_id"

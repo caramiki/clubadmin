@@ -1,0 +1,10 @@
+<p>
+  Title: <%= meeting.title %><br>
+  Description: <%= meeting.description %><br>
+  Start Time: <%= meeting.start_time %><br>
+  End Time: <%= meeting.end_time %><br>
+  Notes: <%= meeting.notes %>
+</p>
+
+<%= link_to "Edit", edit_club_meeting_path(club, meeting) %> |
+<%= link_to "Back", club_meetings_path(club) %>

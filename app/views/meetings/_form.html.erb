@@ -1,0 +1,32 @@
+<%= form_with(model: meeting, url: [club, meeting], local: true) do |f| %>
+  <% if meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+
+      <ul>
+      <% meeting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <label>Title</label><br>
+  <%= f.text_field :title %><br>
+
+  <label>Description</label><br>
+  <%= f.text_area :description %><br>
+
+  <label>Start Time (YYYY-MM-DD H:MM AM/PM)</label><br>
+  <%= f.text_field :start_time %><br>
+
+  <label>End Time (YYYY-MM-DD H:MM AM/PM)</label><br>
+  <%= f.text_field :end_time %><br>
+
+  <label>Meeting Notes</label><br>
+  <%= f.text_area :notes %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
