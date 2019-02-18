@@ -29,5 +29,9 @@ FactoryBot.define do
     description { FFaker::Lorem.paragraph(rand(1..5)) }
     notes { FFaker::Lorem.paragraph(rand(1..5)) }
     club_id { create(:club).id }
+
+    trait :invalid do
+      start_time { nil }
+    end
   end
 end

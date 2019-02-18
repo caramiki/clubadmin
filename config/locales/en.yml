@@ -1,4 +1,11 @@
 en:
+  activerecord:
+    errors:
+      models:
+        meeting:
+          attributes:
+            end_time:
+              after_start_time: "must be after the start time"
   clubs:
     show:
       new_members: New Members

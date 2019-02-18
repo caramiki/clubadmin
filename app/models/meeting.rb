@@ -26,6 +26,7 @@ class Meeting < ApplicationRecord
   has_many :attendances, inverse_of: :meeting, dependent: :destroy
 
   validates :start_time, presence: true
+  validate :end_time_after_start_time
   validates :club, presence: true
 
   scope :future, -> { where("start_time > ?", Date.current) }
@@ -33,5 +34,13 @@ class Meeting < ApplicationRecord
 
   def associated_with?(user)
     club.users.include? user
+  end
+
+  private
+
+  def end_time_after_start_time
+    return if end_time.blank?
+
+    errors.add(:end_time, :after_start_time) if end_time < start_time
   end
 end
