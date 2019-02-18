@@ -51,6 +51,9 @@ group :development do
 
   # Annotate models with database schema
   gem "annotate"
+  
+  # Help to kill N+1 queries and unused eager loading
+  gem "bullet"
 end
 
 group :test do
