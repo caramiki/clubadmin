@@ -52,4 +52,23 @@ RSpec.describe Meeting, type: :model do
       expect(meeting.associated_with?(some_user)).to be false
     end
   end
+
+  describe "#date" do
+    it "returns the date of the meeting as a string" do
+      expect(meeting.date).to eq meeting.start_time.strftime("%b %-d, %Y")
+    end
+  end
+
+  describe "#title_display" do
+    it "returns the title of the meeting if present" do
+      expect(meeting.title_display).to be meeting.title
+      meeting.update(title: "Something")
+      expect(meeting.title).to eq "Something"
+    end
+
+    it "returns a placeholder meeting title with the date if no title is present" do
+      meeting.update(title: "")
+      expect(meeting.title_display).to eq "#{meeting.date} #{Meeting.name}"
+    end
+  end
 end

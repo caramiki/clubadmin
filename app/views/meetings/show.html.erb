@@ -6,7 +6,12 @@
   Notes: <%= meeting.notes %>
 </p>
 
-<h2><%= t(".attendees") %></h2>
+<p><%= link_to "Edit", edit_club_meeting_path(club, meeting) %></p>
 
-<%= link_to "Edit", edit_club_meeting_path(club, meeting) %> |
-<%= link_to "Back", club_meetings_path(club) %>
+<h2><%= t(".attendees") %> &mdash; <%= meeting.attendances.count %></h2>
+
+<%= render "meetings_attendances/attendances", club: club, attendances: meeting.attendances.includes(:attendee).limit(5) %>
+
+<p><%= link_to "View All Attendees", club_meeting_attendances_path(club, meeting) %></p>
+
+<p><%= link_to "Back", club_meetings_path(club) %></p>

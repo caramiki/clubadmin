@@ -3,6 +3,7 @@
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
+      <th>Meetings Attended</th>
       <th>Notes</th>
       <th colspan="3"></th>
     </tr>
@@ -13,6 +14,7 @@
       <tr>
         <td><%= member.first_name %></td>
         <td><%= member.last_name %></td>
+        <td><%= member.attendances.count %></td>
         <td><%= member.notes %></td>
         <td><%= link_to "Show", club_member_path(club, member) %></td>
         <td><%= link_to "Edit", edit_club_member_path(club, member) %></td>

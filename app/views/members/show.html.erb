@@ -4,7 +4,12 @@
   Notes: <%= member.notes %>
 </p>
 
-<h2><%= t(".attended_meetings") %></h2>
+<p><%= link_to "Edit", edit_club_member_path(club, member) %></p>
 
-<%= link_to "Edit", edit_club_member_path(club, member) %> |
-<%= link_to "Back", club_members_path(club) %>
+<h2><%= t(".attended_meetings") %> &mdash; <%= member.attendances.count %></h2>
+
+<%= render "members_attendances/attendances", club: club, attendances: member.attendances.includes(:meeting).limit(5) %>
+
+<p><%= link_to "View Attendance History", club_member_attendances_path(club, member) %></p>
+
+<p><%= link_to "Back", club_members_path(club) %></p>

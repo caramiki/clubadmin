@@ -1,0 +1,5 @@
+<h1>Meetings Attended &mdash; <%= attendances.count %></h1>
+
+<%= render "attendances", club: club, attendances: attendances %>
+
+<p><%= link_to "Back", club_member_path(club, member) %></p>

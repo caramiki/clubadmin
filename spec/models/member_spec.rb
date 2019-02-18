@@ -48,7 +48,7 @@ RSpec.describe Member, type: :model do
   describe "#attendance" do
     it "returns the member's attendance for a given meeting" do
       meeting = create(:meeting, club: member.club)
-      attendance = create(:attendance, meeting: meeting, member: member)
+      attendance = create(:attendance, meeting: meeting, attendee: member)
 
       expect(member.attendance(meeting)).to eq attendance
     end
@@ -58,7 +58,7 @@ RSpec.describe Member, type: :model do
     let(:meeting) { create(:meeting, club: member.club) }
 
     it "returns true if the member attended the meeting" do
-      attendance = create(:attendance, meeting: meeting, member: member)
+      attendance = create(:attendance, meeting: meeting, attendee: member)
 
       expect(member.attended?(meeting)).to be true
     end

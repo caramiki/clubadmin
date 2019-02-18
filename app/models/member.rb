@@ -25,7 +25,8 @@
 class Member < ApplicationRecord
   belongs_to :club, inverse_of: :members
   belongs_to :user, inverse_of: :memberships, required: false
-  has_many :attendances, inverse_of: :member, dependent: :destroy
+  has_many :attendances, inverse_of: :attendee, dependent: :destroy
+  has_many :meetings, through: :attendances
 
   # We need at least a first name or a last name
   validates :first_name, presence: { if: -> { last_name.blank? } }

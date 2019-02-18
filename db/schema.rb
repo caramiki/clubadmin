@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_040427) do
     t.bigint "meeting_id", null: false
     t.datetime "arrival_time"
     t.datetime "departure_time"
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["meeting_id"], name: "index_attendances_on_meeting_id"

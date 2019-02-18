@@ -5,6 +5,7 @@
 #  id             :bigint(8)        not null, primary key
 #  arrival_time   :datetime
 #  departure_time :datetime
+#  notes          :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  meeting_id     :bigint(8)        not null
@@ -24,6 +25,6 @@
 FactoryBot.define do
   factory :attendance do
     meeting_id { create(:meeting).id }
-    member_id { create(:member).id }
+    member_id { create(:member, club: meeting.club).id }
   end
 end

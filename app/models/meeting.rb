@@ -24,6 +24,7 @@
 class Meeting < ApplicationRecord
   belongs_to :club, inverse_of: :meetings
   has_many :attendances, inverse_of: :meeting, dependent: :destroy
+  has_many :attendees, class_name: "Member", through: :attendances
 
   validates :start_time, presence: true
   validate :end_time_after_start_time
@@ -34,6 +35,18 @@ class Meeting < ApplicationRecord
 
   def associated_with?(user)
     club.users.include? user
+  end
+
+  def date
+    start_time.strftime("%b %-d, %Y")
+  end
+
+  def title_display
+    if title.present?
+      title
+    else
+      "#{date} #{Meeting.name}"
+    end
   end
 
   private
