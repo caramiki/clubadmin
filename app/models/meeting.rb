@@ -39,7 +39,7 @@ class Meeting < ApplicationRecord
   private
 
   def end_time_after_start_time
-    return if end_time.blank?
+    return if start_time.blank? || end_time.blank?
 
     errors.add(:end_time, :after_start_time) if end_time < start_time
   end
