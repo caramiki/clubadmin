@@ -71,7 +71,7 @@ class MeetingsController < ApplicationController
   end
 
   def meetings
-    @meetings ||= policy_scope(club.meetings.includes(:attendances))
+    @meetings ||= policy_scope(club.meetings)
   end
 
   def meeting_params

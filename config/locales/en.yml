@@ -2,6 +2,10 @@ en:
   activerecord:
     errors:
       models:
+        attendance:
+          attributes:
+            departure_time:
+              after_arrival_time: "must be after the arrival time"
         meeting:
           attributes:
             end_time:

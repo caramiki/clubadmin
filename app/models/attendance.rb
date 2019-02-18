@@ -23,12 +23,19 @@
 #
 
 class Attendance < ApplicationRecord
+  include DateAndTimeFormattable
+
   belongs_to :meeting, inverse_of: :attendances
   belongs_to :attendee, inverse_of: :attendances, class_name: "Member", foreign_key: "member_id"
 
   validates :meeting, presence: true
   validates :attendee, presence: true
   validates :meeting, uniqueness: { scope: :attendee }
+  validate :departure_time_after_arrival_time
+
+  def arrival_time_display
+    date_and_time_format(arrival_time) if arrival_time.present?
+  end
 
   def associated_with?(user)
     club.users.include? user
@@ -36,5 +43,17 @@ class Attendance < ApplicationRecord
 
   def club
     meeting.club
+  end
+
+  def departure_time_display
+    date_and_time_format(departure_time) if departure_time.present?
+  end
+
+  private
+
+  def departure_time_after_arrival_time
+    return if arrival_time.blank? || departure_time.blank?
+
+    errors.add(:departure_time, :after_arrival_time) if departure_time < arrival_time
   end
 end

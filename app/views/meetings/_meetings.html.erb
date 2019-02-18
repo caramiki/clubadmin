@@ -3,24 +3,21 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
-      <th>Start Time</th>
-      <th>End Time</th>
+      <th>Date</th>
       <th>Attendees</th>
       <th>Meeting Notes</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% meetings.each do |meeting| %>
       <tr>
-        <td><%= meeting.title %></td>
+        <td><%= link_to meeting.title_display, club_meeting_path(club, meeting) %></td>
         <td><%= meeting.description %></td>
-        <td><%= meeting.start_time %></td>
-        <td><%= meeting.end_time %></td>
+        <td><%= meeting.date_and_time %></td>
         <td><%= meeting.attendees.count %></th>
         <td><%= meeting.notes %></td>
-        <td><%= link_to "Show", club_meeting_path(club, meeting) %></td>
         <td><%= link_to "Edit", edit_club_meeting_path(club, meeting) %></td>
         <td><%= link_to "Destroy", club_meeting_path(club, meeting), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>

@@ -22,6 +22,8 @@
 #
 
 class Meeting < ApplicationRecord
+  include DateAndTimeFormattable
+
   belongs_to :club, inverse_of: :meetings
   has_many :attendances, inverse_of: :meeting, dependent: :destroy
   has_many :attendees, class_name: "Member", through: :attendances
@@ -38,7 +40,21 @@ class Meeting < ApplicationRecord
   end
 
   def date
-    start_time.strftime("%b %-d, %Y")
+    date_format(start_time)
+  end
+
+  def date_and_time
+    return start_time_display unless end_time.present?
+
+    date_and_time_range_format(start_time, end_time)
+  end
+
+  def end_time_display
+    date_and_time_format(end_time) if end_time.present?
+  end
+
+  def start_time_display
+    date_and_time_format(start_time)
   end
 
   def title_display
@@ -54,6 +70,6 @@ class Meeting < ApplicationRecord
   def end_time_after_start_time
     return if start_time.blank? || end_time.blank?
 
-    errors.add(:end_time, :after_start_time) if end_time < start_time
+    errors.add(:end_time, :after_start_time) if end_time <= start_time
   end
 end
