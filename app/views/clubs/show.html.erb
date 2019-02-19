@@ -7,6 +7,13 @@
 <%= link_to "Edit", edit_club_path(club) %>
 
 <h2><%= t(".upcoming_meetings") %></h2>
+<%= render "meetings/meetings", club: club, meetings: club.meetings.future.limit(5) %>
+
 <h2><%= t(".recent_meetings") %></h2>
+<%= render "meetings/meetings", club: club, meetings: club.meetings.past.limit(5) %>
+
 <h2><%= t(".new_members") %></h2>
+<%= render "members/members", club: club, members: club.members.order(created_at: :desc).limit(5) %>
+
 <h2><%= t(".regular_members") %></h2>
+<%= render "members/members", club: club, members: club.members.order("attendances_count DESC").limit(5) %>

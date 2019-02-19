@@ -2,14 +2,15 @@
 #
 # Table name: members
 #
-#  id         :bigint(8)        not null, primary key
-#  first_name :string
-#  last_name  :string
-#  notes      :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  club_id    :bigint(8)        not null
-#  user_id    :bigint(8)
+#  id                :bigint(8)        not null, primary key
+#  attendances_count :integer          default(0), not null
+#  first_name        :string
+#  last_name         :string
+#  notes             :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  club_id           :bigint(8)        not null
+#  user_id           :bigint(8)
 #
 # Indexes
 #

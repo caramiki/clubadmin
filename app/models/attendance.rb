@@ -25,8 +25,8 @@
 class Attendance < ApplicationRecord
   include DateAndTimeFormattable
 
-  belongs_to :meeting, inverse_of: :attendances
-  belongs_to :attendee, inverse_of: :attendances, class_name: "Member", foreign_key: "member_id"
+  belongs_to :meeting, inverse_of: :attendances, counter_cache: true
+  belongs_to :attendee, inverse_of: :attendances, class_name: "Member", foreign_key: "member_id", counter_cache: true
 
   validates :meeting, presence: true
   validates :attendee, presence: true

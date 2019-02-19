@@ -8,7 +8,7 @@
 
 <p><%= link_to "Edit", edit_club_meeting_path(club, meeting) %></p>
 
-<h2><%= t(".attendees") %> &mdash; <%= meeting.attendances.count %></h2>
+<h2><%= t(".attendees") %> &mdash; <%= meeting.attendances_count %></h2>
 
 <%= render "meetings_attendances/attendances", club: club, attendances: meeting.attendances.includes(:attendee).limit(5) %>
 

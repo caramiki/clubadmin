@@ -5,7 +5,7 @@
       <th>Description</th>
       <th>Date</th>
       <th>Attendees</th>
-      <th>Meeting Notes</th>
+      <th>Notes</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -16,7 +16,7 @@
         <td><%= link_to meeting.title_display, club_meeting_path(club, meeting) %></td>
         <td><%= meeting.description %></td>
         <td><%= meeting.date_and_time %></td>
-        <td><%= meeting.attendees.count %></th>
+        <td><%= meeting.attendances_count %></th>
         <td><%= meeting.notes %></td>
         <td><%= link_to "Edit", edit_club_meeting_path(club, meeting) %></td>
         <td><%= link_to "Destroy", club_meeting_path(club, meeting), method: :delete, data: { confirm: "Are you sure?" } %></td>

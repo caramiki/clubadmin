@@ -2,15 +2,16 @@
 #
 # Table name: meetings
 #
-#  id          :bigint(8)        not null, primary key
-#  description :text
-#  end_time    :datetime
-#  notes       :text
-#  start_time  :datetime         not null
-#  title       :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  club_id     :bigint(8)        not null
+#  id                :bigint(8)        not null, primary key
+#  attendances_count :integer          default(0), not null
+#  description       :text
+#  end_time          :datetime
+#  notes             :text
+#  start_time        :datetime         not null
+#  title             :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  club_id           :bigint(8)        not null
 #
 # Indexes
 #
@@ -33,7 +34,7 @@ class Meeting < ApplicationRecord
   validates :club, presence: true
 
   scope :future, -> { where("start_time > ?", Date.current) }
-  scope :past, -> { where("start_time <= ?", Date.current) }
+  scope :past, -> { where("start_time <= ?", Date.current).order(start_time: :desc) }
 
   def associated_with?(user)
     club.users.include? user

@@ -6,7 +6,7 @@
 
 <p><%= link_to "Edit", edit_club_member_path(club, member) %></p>
 
-<h2><%= t(".attended_meetings") %> &mdash; <%= member.attendances.count %></h2>
+<h2><%= t(".attended_meetings") %> &mdash; <%= member.attendances_count %></h2>
 
 <%= render "members_attendances/attendances", club: club, attendances: member.attendances.includes(:meeting).limit(5) %>
 

@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_040427) do
     t.datetime "end_time"
     t.text "description"
     t.text "notes"
+    t.integer "attendances_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_meetings_on_club_id"
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_040427) do
     t.string "first_name"
     t.string "last_name"
     t.text "notes"
+    t.integer "attendances_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_members_on_club_id"

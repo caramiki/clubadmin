@@ -68,17 +68,16 @@ end
 
 # Create meetings and attendances
 unless club.meetings.any?
-  first_meeting = Date.parse("Monday") - 10.weeks
+  start_time = Date.parse("Monday") - 90.weeks + 18.hours
   meeting_names = ["Show & Tell", "Presentation Night", "Workshop", "Social Night"]
 
-  20.times do |i|
-    start_time = (first_meeting + i.weeks).to_datetime + 18.hours
-
+  100.times do |i|
     club.meetings.create!(
       title: meeting_names[i % 4],
       start_time: start_time,
-      end_time: start_time + 2.hours
+      end_time: start_time + 2.5.hours
     )
+    start_time += 1.week
   end
 
   club.meetings.past.each do |m|

@@ -12,7 +12,7 @@
     <% members.each do |member| %>
       <tr>
         <td><%= link_to member.name, club_member_path(club, member) %></td>
-        <td><%= member.attendances.count %></td>
+        <td><%= member.attendances_count %></td>
         <td><%= member.notes %></td>
         <td><%= link_to "Edit", edit_club_member_path(club, member) %></td>
         <td><%= link_to "Destroy", club_member_path(club, member), method: :delete, data: { confirm: "Are you sure?" } %></td>

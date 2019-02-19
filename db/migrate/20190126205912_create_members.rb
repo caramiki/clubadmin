@@ -7,6 +7,7 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
       t.text :notes
+      t.integer :attendances_count, default: 0, null: false
 
       t.timestamps
     end
