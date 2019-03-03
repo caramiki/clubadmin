@@ -18,6 +18,9 @@
   <label>Name</label><br>
   <%= f.text_field :name %><br>
 
+  <label>Time Zone</label><br>
+  <%= f.select :timezone, Club.timezone_options, include_blank: true %><br>
+
   <label>Description</label><br>
   <%= f.text_area :description %>
 

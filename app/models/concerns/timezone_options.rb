@@ -162,4 +162,8 @@ module TimezoneOptions
   def timezone_names
     TIMEZONES.map { |t| t[1] }
   end
+
+  def timezone_options
+    TIMEZONES
+  end
 end
