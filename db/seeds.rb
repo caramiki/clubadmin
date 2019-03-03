@@ -42,6 +42,7 @@ end
 club = Club.where(name: "Cat Club").first_or_create do |c|
   c.description = "A club for fans of cats"
   c.creator = admin
+  c.timezone = "America/Chicago"
 end
 
 # Create roles
@@ -68,15 +69,18 @@ end
 
 # Create meetings and attendances
 unless club.meetings.any?
-  start_time = Date.parse("Monday") - 90.weeks + 18.hours
+  start_time = Date.parse("Monday") - 90.weeks + 23.hours
   meeting_names = ["Show & Tell", "Presentation Night", "Workshop", "Social Night"]
 
   100.times do |i|
+    adjust_for_dst = start_time.in_time_zone(club.timezone).dst? ? -1.hour : 0.hours
+
     club.meetings.create!(
       title: meeting_names[i % 4],
-      start_time: start_time,
-      end_time: start_time + 2.5.hours
+      start_time: start_time + adjust_for_dst,
+      end_time: start_time + adjust_for_dst + 2.5.hours
     )
+
     start_time += 1.week
   end
 

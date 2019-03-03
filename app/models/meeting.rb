@@ -33,6 +33,7 @@ class Meeting < ApplicationRecord
   validate :end_time_after_start_time
   validates :club, presence: true
 
+  scope :by_start_time, -> { order(start_time: :asc) }
   scope :future, -> { where("start_time > ?", Date.current) }
   scope :past, -> { where("start_time <= ?", Date.current).order(start_time: :desc) }
 

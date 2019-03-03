@@ -5,6 +5,7 @@
 #  id          :bigint(8)        not null, primary key
 #  description :text
 #  name        :string           not null
+#  timezone    :string           default("Etc/UTC"), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  creator_id  :bigint(8)

@@ -5,6 +5,7 @@ class CreateClubs < ActiveRecord::Migration[5.2]
 
       t.string :name, null: false
       t.text :description
+      t.string :timezone, null: false, default: "Etc/UTC"
 
       t.timestamps
     end

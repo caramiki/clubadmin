@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_040427) do
     t.bigint "creator_id"
     t.string "name", null: false
     t.text "description"
+    t.string "timezone", default: "Etc/UTC", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_clubs_on_creator_id"
