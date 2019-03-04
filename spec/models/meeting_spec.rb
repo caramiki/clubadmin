@@ -22,7 +22,7 @@
 #  fk_rails_...  (club_id => clubs.id)
 #
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Meeting, type: :model do
   let(:meeting) { create(:meeting) }

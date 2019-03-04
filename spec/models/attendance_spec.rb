@@ -22,7 +22,7 @@
 #  fk_rails_...  (member_id => members.id)
 #
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Attendance, type: :model do
   let(:attendance) { create(:attendance) }

@@ -1,6 +1,6 @@
 module TimezoneOptions
   # Hard-coding these because it's lighter weight than using ActiveSupport::TimeZone
-  # TimeZone.all.map { |t| [t.to_s, t.name] }
+  # TimeZone.all.map { |t| [t.to_s, t.tzinfo.name] }
   TIMEZONES = [
     ["(GMT-12:00) International Date Line West",  "Etc/GMT+12"],
     ["(GMT-11:00) American Samoa",                "Pacific/Pago_Pago"],

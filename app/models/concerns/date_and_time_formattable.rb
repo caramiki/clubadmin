@@ -14,6 +14,8 @@ module DateAndTimeFormattable
   # e.g. 6:00
   TIME_FORMAT = "#{HOUR_FORMAT}:%M"
 
+  private
+
   def date_and_time_format(datetime)
     local_time(datetime).strftime("#{DATE_FORMAT} #{hour_or_time_format(datetime)} #{MERIDIAN_FORMAT}")
   end
@@ -41,8 +43,6 @@ module DateAndTimeFormattable
   def time_format(datetime)
     local_time(datetime).strftime(hour_or_time_format(datetime))
   end
-
-  private
 
   def hour_or_time_format(datetime)
     if local_time(datetime) == local_time(datetime).beginning_of_hour
