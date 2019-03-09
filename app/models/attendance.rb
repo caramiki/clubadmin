@@ -32,6 +32,12 @@ class Attendance < ApplicationRecord
   validates :attendee, presence: true
   validates :meeting, uniqueness: { scope: :attendee }
   validate :departure_time_after_arrival_time
+  validate :meeting_and_attendee_belong_to_same_club
+
+  scope :by_meeting_start_time, -> { includes(:meeting).order("meetings.start_time ASC") }
+  scope :by_meeting_start_time_desc,  -> { includes(:meeting).order("meetings.start_time DESC") }
+
+  attr_accessor :attended
 
   def arrival_time_display
     date_and_time_format(arrival_time) if arrival_time.present?
@@ -55,5 +61,11 @@ class Attendance < ApplicationRecord
     return if arrival_time.blank? || departure_time.blank?
 
     errors.add(:departure_time, :after_arrival_time) if departure_time < arrival_time
+  end
+
+  def meeting_and_attendee_belong_to_same_club
+    return if meeting.club == attendee.club
+
+    errors.add(:attendee, :not_in_club)
   end
 end

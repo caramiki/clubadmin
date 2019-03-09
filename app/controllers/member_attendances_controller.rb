@@ -1,4 +1,4 @@
-class MembersAttendancesController < ApplicationController
+class MemberAttendancesController < ApplicationController
   def index
     authorize attendances
 
@@ -8,8 +8,8 @@ class MembersAttendancesController < ApplicationController
   private
 
   def attendances
-    @attendances ||= policy_scope(member.attendances.includes(:meeting))
-  end
+    @attendances ||= policy_scope(member.attendances.includes(:meeting).by_meeting_start_time_desc)
+  end 
 
   def club
     @club ||= Club.find_by!(id: params[:club_id])

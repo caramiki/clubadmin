@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :clubs do
-    resources :attendances, only: [:create, :update, :destroy]
     resources :meetings do
-      resources :attendances, only: [:index], controller: "meetings_attendances"
+      resources :attendances, only: [:index], controller: "meeting_attendances"
+      patch "attendances", to: "meeting_attendances#update"
+      put "attendances", to: "meeting_attendances#update"
     end
     resources :members do
-      resources :attendances, only: [:index], controller: "members_attendances"
+      resources :attendances, only: [:index], controller: "member_attendances"
     end
   end
 end

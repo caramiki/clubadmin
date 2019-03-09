@@ -4,7 +4,7 @@ class CreateMeetings < ActiveRecord::Migration[5.2]
       t.belongs_to :club, index: true, foreign_key: true, null: false
 
       t.string :title
-      t.datetime :start_time, null: false
+      t.datetime :start_time, null: false, index: true
       t.datetime :end_time
       t.text :description
       t.text :notes

@@ -8,7 +8,7 @@
 
 <h2><%= t(".attended_meetings") %> &mdash; <%= member.attendances_count %></h2>
 
-<%= render "members_attendances/attendances", club: club, attendances: member.attendances.includes(:meeting).limit(5) %>
+<%= render "member_attendances/attendances", club: club, attendances: member.attendances.includes(:meeting).limit(5) %>
 
 <p><%= link_to "View Attendance History", club_member_attendances_path(club, member) %></p>
 

@@ -75,6 +75,6 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:member).permit(:first_name, :last_name, :notes)
+    permitted_attributes(member)
   end
 end

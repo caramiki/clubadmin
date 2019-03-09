@@ -29,6 +29,8 @@ class Meeting < ApplicationRecord
   has_many :attendances, inverse_of: :meeting, dependent: :destroy
   has_many :attendees, class_name: "Member", through: :attendances
 
+  accepts_nested_attributes_for :attendances, allow_destroy: true
+
   validates :start_time, presence: true
   validate :end_time_after_start_time
   validates :club, presence: true
@@ -53,6 +55,10 @@ class Meeting < ApplicationRecord
 
   def end_time_display
     date_and_time_format(end_time) if end_time.present?
+  end
+
+  def non_attendees
+    club.members - attendees
   end
 
   def start_time_display

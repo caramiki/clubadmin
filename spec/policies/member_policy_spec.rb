@@ -2,11 +2,9 @@ require "rails_helper"
 
 describe MemberPolicy do
   let(:member) { create(:member) }
-  let(:visitor) { User.new }
-  let(:user) { create(:user) }
-  let(:super_admin) { create(:user, :super_admin) }
 
   context "for visitor" do
+    let(:visitor) { User.new }
     let(:policy) { MemberPolicy.new(visitor, member) }
 
     it "returns false for #index?" do
@@ -41,6 +39,7 @@ describe MemberPolicy do
   end
 
   context "for regular user" do
+    let(:user) { create(:user) }
     let(:policy) { MemberPolicy.new(user, member) }
 
     context "for an organizer of the member's club" do
@@ -158,6 +157,7 @@ describe MemberPolicy do
   end
 
   context "for super admin" do
+    let(:super_admin) { create(:user, :super_admin) }
     let(:policy) { MemberPolicy.new(super_admin, member) }
 
     it "returns true for #index?" do

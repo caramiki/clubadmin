@@ -21,4 +21,12 @@ class MemberPolicy < ApplicationPolicy
   def destroy?
     user.admin_of?(record.club) && !record.user
   end
+
+  def permitted_attributes
+    [
+      :first_name,
+      :last_name,
+      :notes,
+    ]
+  end
 end

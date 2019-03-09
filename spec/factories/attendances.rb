@@ -26,5 +26,12 @@ FactoryBot.define do
   factory :attendance do
     meeting_id { create(:meeting).id }
     member_id { create(:member, club: meeting.club).id }
+    arrival_time { meeting.start_time }
+    departure_time { meeting.end_time }
+
+    trait :invalid do
+      arrival_time { meeting.start_time }
+      departure_time { meeting.start_time - 1.hour }
+    end
   end
 end

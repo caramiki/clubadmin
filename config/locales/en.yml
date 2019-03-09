@@ -4,6 +4,8 @@ en:
       models:
         attendance:
           attributes:
+            attendee:
+              not_in_club: "must be in the club"
             departure_time:
               after_arrival_time: "must be after the arrival time"
         meeting:

@@ -40,10 +40,6 @@ module DateAndTimeFormattable
     local_time(datetime).strftime(DATE_FORMAT)
   end
 
-  def time_format(datetime)
-    local_time(datetime).strftime(hour_or_time_format(datetime))
-  end
-
   def hour_or_time_format(datetime)
     if local_time(datetime) == local_time(datetime).beginning_of_hour
       HOUR_FORMAT
@@ -54,5 +50,9 @@ module DateAndTimeFormattable
 
   def local_time(datetime)
     datetime.in_time_zone(club.timezone)
+  end
+
+  def time_format(datetime)
+    local_time(datetime).strftime(hour_or_time_format(datetime))
   end
 end

@@ -18,4 +18,15 @@ class MeetingPolicy < ApplicationPolicy
   def destroy?
     user.admin_of?(record.club)
   end
+
+  def permitted_attributes
+    [
+      :title,
+      :start_time,
+      :end_time,
+      :description,
+      :notes,
+      attendances_attributes: AttendancePolicy.new(user, Attendance).permitted_attributes
+    ]
+  end
 end

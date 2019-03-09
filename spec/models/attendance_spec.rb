@@ -45,6 +45,16 @@ RSpec.describe Attendance, type: :model do
       expect(attendance.update(arrival_time: arrival_time, departure_time: departure_time)).to be false
       expect(attendance.errors.full_messages).to include departure_time_error_message
     end
+
+    it "does not allow an attendee that is not in the club" do
+      outsider = create(:member)
+
+      not_in_club_error_message = Attendance.human_attribute_name(:attendee) + " " +
+        I18n.t(".activerecord.errors.models.attendance.attributes.attendee.not_in_club")
+
+      expect(attendance.update(attendee: outsider)).to be false
+      expect(attendance.errors.full_messages).to include not_in_club_error_message
+    end
   end
 
   describe "#arrival_time_display" do

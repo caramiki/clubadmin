@@ -28,4 +28,13 @@ class ClubPolicy < ApplicationPolicy
   def destroy?
     update?
   end
+
+  def permitted_attributes
+    [
+      :name,
+      :timezone,
+      :description,
+      :creator_id,
+    ]
+  end
 end

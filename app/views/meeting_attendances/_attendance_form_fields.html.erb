@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Arrival Time</th>
+      <th>Departure Time</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= f.fields_for :attendances, attendances do |fa| %>
+      <tr>
+        <td>
+          <%= fa.check_box :_destroy, { checked: !fa.object.new_record? }, 0, 1 %>
+          <%= fa.hidden_field :id unless fa.object.new_record? %>
+          <%= fa.hidden_field :meeting_id %>
+          <%= fa.hidden_field :member_id %>
+        </td>
+        <td><%= link_to fa.object.attendee.name, club_member_path(club, fa.object.attendee) %></td>
+        <td><%= fa.text_field :arrival_time %></td>
+        <td><%= fa.text_field :departure_time %></td>
+        <td><%= fa.text_area :notes %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

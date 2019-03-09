@@ -10,7 +10,7 @@
 
 <h2><%= t(".attendees") %> &mdash; <%= meeting.attendances_count %></h2>
 
-<%= render "meetings_attendances/attendances", club: club, attendances: meeting.attendances.includes(:attendee).limit(5) %>
+<%= render "meeting_attendances/attendances", club: club, attendances: meeting.attendances.includes(:attendee).limit(5) %>
 
 <p><%= link_to "View All Attendees", club_meeting_attendances_path(club, meeting) %></p>
 
